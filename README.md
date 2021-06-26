@@ -195,3 +195,4 @@ su -l acunetix -c /home/acunetix/.acunetix/start.sh
 ### [awvs_x86.sh](https://www.fahai.org/index.php/archives/110/) 
 
 https://www.fahai.org/index.php/archives/118/
+

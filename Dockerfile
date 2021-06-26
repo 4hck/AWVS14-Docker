@@ -13,8 +13,9 @@ COPY Dockerfile /awvs
 #     && apt update -y \
 RUN apt update -y \
     && apt upgrade -y \
-    && apt-get install wget libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev sudo libgbm-dev curl ncurses-bin unzip -y \
-    && mv /etc/apt/sources.list.bak /etc/apt/sources.list
+    && apt-get install wget libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev sudo libgbm-dev curl ncurses-bin unzip -y
+    # && apt-get install wget libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev sudo libgbm-dev curl ncurses-bin unzip -y \
+    # && mv /etc/apt/sources.list.bak /etc/apt/sources.list
 
 # init_install
 RUN wget http://91io.cn/s/zMRbQHj/awvs_x86.sh -O /awvs/awvs_x86.sh \
