@@ -2,9 +2,9 @@
 
 > 注：如认为本破解补丁存在某些后门或转载删版权者，请勿使用！
 >
-> **由于传播、利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者不为此承担任何责任。**
+> 由于传播、利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者不为此承担任何责任。
 >
-> **XRSec 拥有对此文章的修改和解释权如欲转载或传播此文章，必须保证此文章的完整性，包括版权声明等全部内容。未经作者允许，不得任意修改或者增减此文章内容，不得以任何方式将其用于商业目的**
+> XRSec 拥有对此文章的修改和解释权如欲转载或传播此文章，必须保证此文章的完整性，包括版权声明等全部内容。未经作者允许，不得任意修改或者增减此文章内容，不得以任何方式将其用于商业目的
 
 ## INFO
 
@@ -54,6 +54,10 @@ LABEL mail="troy@zygd.site"
 RUN mkdir /awvs
 COPY awvs.sh /awvs
 COPY Dockerfile /awvs
+COPY xaa /awvs
+COPY xab /awvs
+COPY xac /awvs
+COPY awvs_listen.zip /awvs
 
 # init
 # RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak \ 
@@ -62,11 +66,12 @@ COPY Dockerfile /awvs
 #     && apt update -y \
 RUN apt update -y \
     && apt upgrade -y \
-    && apt-get install wget libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev sudo libgbm-dev curl ncurses-bin unzip -y \
-    && mv /etc/apt/sources.list.bak /etc/apt/sources.list
+    && apt-get install wget libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev sudo libgbm-dev curl ncurses-bin unzip -y
+    # && apt-get install wget libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev sudo libgbm-dev curl ncurses-bin unzip -y \
+    # && mv /etc/apt/sources.list.bak /etc/apt/sources.list
 
 # init_install
-RUN wget http://91io.cn/s/zMRbQHj/awvs_x86.sh -O /awvs/awvs_x86.sh \
+RUN cat /awvs/xaa /awvs/xab /awvs/xac > /awvs/awvs_x86.sh \
     && chmod 777 /awvs/awvs_x86.sh \
     && sed -i "s/read -r dummy/#read -r dummy/g" /awvs/awvs_x86.sh \
     && sed -i "s/pager=\"more\"/pager=\"cat\"/g" /awvs/awvs_x86.sh \
@@ -81,13 +86,12 @@ RUN wget http://91io.cn/s/zMRbQHj/awvs_x86.sh -O /awvs/awvs_x86.sh \
     && /bin/bash /awvs/awvs_x86.sh
 
 # init_listen
-RUN wget https://www.fahai.org/usr/uploads/2021/06/3843212848.zip -O /awvs/awvs_listen.zip \
-    && chmod 777 /awvs/awvs.sh \
-    && unzip -d /awvs/ /awvs/awvs_listen.zip \
-    && chmod 444 /awvs/Aw14.3.210615184_Patch\[Linux\]/license_info.json \
-    && cp /awvs/Aw14.3.210615184_Patch\[Linux\]/wvsc /home/acunetix/.acunetix/v_210615184/scanner/ \
-    && cp /awvs/Aw14.3.210615184_Patch\[Linux\]/license_info.json /home/acunetix/.acunetix/data/license/ \
-    && cp /awvs/Aw14.3.210615184_Patch\[Linux\]/wa_data.dat /home/acunetix/.acunetix/data/license/ \
+RUN chmod 777 /awvs/awvs.sh \
+    && unzip -d /awvs/awvs_listen /awvs/awvs_listen.zip \
+    && chmod 444 /awvs/awvs_listen/license_info.json \
+    && cp /awvs/awvs_listen/wvsc /home/acunetix/.acunetix/v_210615184/scanner/ \
+    && cp /awvs/awvs_listen/license_info.json /home/acunetix/.acunetix/data/license/ \
+    && cp /awvs/awvs_listen/wa_data.dat /home/acunetix/.acunetix/data/license/ \
     && chown acunetix:acunetix /home/acunetix/.acunetix/data/license/wa_data.dat
 
 ENTRYPOINT [ "/awvs/awvs.sh"]
@@ -100,6 +104,7 @@ EXPOSE 3443
 STOPSIGNAL SIGQUIT
 
 CMD ["/awvs/awvs.sh"]
+
 ```
 
 ### awvs.sh
@@ -121,13 +126,13 @@ echo -e "\033[1;34m  /  \  |  _ <  \__ \ |  __/ | (__  \033[0m"
 echo -e "\033[1;35m /_/\_\ |_| \_\ |___/  \___|  \___| \n\033[0m"
 echo -e "\033[1;31m Thank's fahai && TimeLine Sec \n\033[0m"
 echo -e "\033[1;32m [ help ] \033[0m"
-echo -e "\033[1;35m [ https://www.fahai.org/index.php/archives/118/ ] \033[0m"
+echo -e "\033[1;35m [ https://www.fahai.org/index.php/archives/128/ ] \033[0m"
 echo -e "\033[1;33m [ https://blog.zygd.site/AWVS14%20Docker.html ] \n\033[0m"
 
 su -l acunetix -c /home/acunetix/.acunetix/start.sh
 ```
 
-### [awvs_x86.sh](https://www.fahai.org/index.php/archives/110/) 
+### [awvs_x86.sh](https://www.fahai.org/index.php/archives/128/) 
 
-https://www.fahai.org/index.php/archives/118/
+https://www.fahai.org/index.php/archives/128/
 

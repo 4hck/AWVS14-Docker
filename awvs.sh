@@ -14,7 +14,7 @@ echo -e "\033[1;34m  /  \  |  _ <  \__ \ |  __/ | (__  \033[0m"
 echo -e "\033[1;35m /_/\_\ |_| \_\ |___/  \___|  \___| \n\033[0m"
 echo -e "\033[1;31m Thank's fahai && TimeLine Sec \n\033[0m"
 echo -e "\033[1;32m [ help ] \033[0m"
-echo -e "\033[1;35m [ https://www.fahai.org/index.php/archives/118/ ] \033[0m"
+echo -e "\033[1;35m [ https://www.fahai.org/index.php/archives/128/ ] \033[0m"
 echo -e "\033[1;33m [ https://blog.zygd.site/AWVS14%20Docker.html ] \n\033[0m"
 
 su -l acunetix -c /home/acunetix/.acunetix/start.sh
